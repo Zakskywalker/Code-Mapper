@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+  <defs>
+    <style>
+      .title { font: 700 28px Consolas, 'Courier New', monospace; fill: #1a1a1a; }
+      .label { font: 600 16px Consolas, 'Courier New', monospace; fill: #1a1a1a; }
+      .small { font: 500 13px Consolas, 'Courier New', monospace; fill: #202020; }
+      .box { fill: #f7f7fb; stroke: #2f3a4a; stroke-width: 2; rx: 10; }
+      .subbox { fill: #ffffff; stroke: #5f6f86; stroke-width: 1.5; rx: 8; }
+      .accent { fill: #eaf2ff; stroke: #2f5ca8; stroke-width: 2; rx: 10; }
+      .arrow { stroke: #2f3a4a; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2f3a4a" />
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="980" fill="#f0f3f8"/>
+  <text x="700" y="45" text-anchor="middle" class="title">C# Code Mapper Pro - Top Down Codemap</text>
+
+  <rect x="520" y="80" width="360" height="90" class="accent"/>
+  <text x="700" y="116" text-anchor="middle" class="label">CSharpProMapper.__init__</text>
+  <text x="700" y="142" text-anchor="middle" class="small">load config -> setup_ui -> apply_theme -> bind safe_exit</text>
+
+  <rect x="120" y="230" width="360" height="170" class="box"/>
+  <text x="300" y="260" text-anchor="middle" class="label">UI + Menus</text>
+  <text x="145" y="292" class="small">setup_ui, refresh_theme_menu</text>
+  <text x="145" y="316" class="small">open_file, refresh_history_menu</text>
+  <text x="145" y="340" class="small">create_tab, toggle_layout</text>
+  <text x="145" y="364" class="small">apply_tab_proportions</text>
+  <text x="145" y="388" class="small">apply_main_pane_layout</text>
+
+  <rect x="520" y="230" width="360" height="170" class="box"/>
+  <text x="700" y="260" text-anchor="middle" class="label">Theme + Config</text>
+  <text x="545" y="292" class="small">get_available_themes, select_theme</text>
+  <text x="545" y="316" class="small">apply_theme, apply_scrollbar_theme</text>
+  <text x="545" y="340" class="small">load_config, save_config</text>
+  <text x="545" y="364" class="small">ret_Theme, log</text>
+  <text x="545" y="388" class="small">safe_exit</text>
+
+  <rect x="920" y="230" width="360" height="170" class="box"/>
+  <text x="1100" y="260" text-anchor="middle" class="label">Navigation + Zoom</text>
+  <text x="945" y="292" class="small">on_tree_select, on_canvas_click</text>
+  <text x="945" y="316" class="small">scroll_canvas_to</text>
+  <text x="945" y="340" class="small">on_canvas_zoom, zoom_diagram</text>
+  <text x="945" y="364" class="small">zoom_current_diagram</text>
+  <text x="945" y="388" class="small">reset_current_diagram_zoom</text>
+
+  <rect x="260" y="470" width="880" height="410" class="box"/>
+  <text x="700" y="504" text-anchor="middle" class="label">Parsing Pipeline</text>
+
+  <rect x="300" y="530" width="240" height="140" class="subbox"/>
+  <text x="420" y="560" text-anchor="middle" class="label">Language Detection</text>
+  <text x="320" y="590" class="small">detect_language</text>
+  <text x="320" y="614" class="small">is_probably_programming_language</text>
+  <text x="320" y="638" class="small">get_language_spec</text>
+
+  <rect x="580" y="530" width="240" height="140" class="subbox"/>
+  <text x="700" y="560" text-anchor="middle" class="label">Dispatch</text>
+  <text x="600" y="590" class="small">parse_scoped</text>
+  <text x="600" y="614" class="small">_begin_parse</text>
+  <text x="600" y="638" class="small">_add_entity</text>
+
+  <rect x="860" y="530" width="240" height="140" class="subbox"/>
+  <text x="980" y="560" text-anchor="middle" class="label">Language Parsers</text>
+  <text x="880" y="590" class="small">parse_python_scoped</text>
+  <text x="880" y="614" class="small">parse_brace_scoped</text>
+  <text x="880" y="638" class="small">node_map + canvas_item_to_tree</text>
+
+  <rect x="420" y="710" width="240" height="140" class="subbox"/>
+  <text x="540" y="740" text-anchor="middle" class="label">Tree Post-Process</text>
+  <text x="440" y="770" class="small">autosize_tree_columns</text>
+  <text x="440" y="794" class="small">on_tree_press</text>
+  <text x="440" y="818" class="small">on_tree_release</text>
+
+  <rect x="740" y="710" width="240" height="140" class="subbox"/>
+  <text x="860" y="740" text-anchor="middle" class="label">Tab Refresh</text>
+  <text x="760" y="770" class="small">refresh_tab</text>
+  <text x="760" y="794" class="small">refresh_all_tabs</text>
+  <text x="760" y="818" class="small">line numbers + theme tags</text>
+
+  <path d="M700,170 L300,230" class="arrow"/>
+  <path d="M700,170 L700,230" class="arrow"/>
+  <path d="M700,170 L1100,230" class="arrow"/>
+
+  <path d="M300,400 L420,470" class="arrow"/>
+  <path d="M700,400 L700,470" class="arrow"/>
+  <path d="M1100,400 L980,470" class="arrow"/>
+
+  <path d="M540,670 L540,710" class="arrow"/>
+  <path d="M860,670 L860,710" class="arrow"/>
+  <path d="M540,600 L580,600" class="arrow"/>
+  <path d="M820,600 L860,600" class="arrow"/>
+</svg>
