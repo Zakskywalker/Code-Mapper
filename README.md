@@ -6,7 +6,7 @@
 #
 #                     C# Code Mapper Pro
 
-`C# Code Mapper Pro` is a Tkinter desktop application that opens source files, parses structural entities (class/method/variable/function), and visualizes them in:
+`C# Code Mapper Pro` is a Tkinter desktop application - written in CSharp and templated and documented with Codex - that opens source files, parses structural entities (class/method/variable/function), and visualizes them in:
 
 - a `Treeview` explorer
 - a node-link diagram canvas
