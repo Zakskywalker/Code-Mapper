@@ -14,5 +14,6 @@
   ],
   "auto_parse": true,
   "show_diff": true,
-  "window_size": "1536x773+6+43"
+  "window_size": "1536x773+6+43",
+  "start_fullscreen": true
 }

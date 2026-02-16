@@ -105,15 +105,25 @@ class CSharpProMapper:
         self.config_file = "config.json"
         #self.config = {"theme": "light", "history": [], "auto_parse": False, "show_diff": True, "window_size": "1400x900"}
        # self.load_config()
-        self.config = self.load_config(self.config_file) or {"theme": "dark", "history": [], "auto_parse": False, "show_diff": True, "window_size": "1400x900"}
+        self.config = self.load_config(self.config_file) or {"theme": "dark", "history": [], "auto_parse": False, "show_diff": True, "window_size": "1400x900", "start_fullscreen": True}
         self.config.setdefault("theme", "dark")
         self.config.setdefault("history", [])
         self.config.setdefault("window_size", "1400x900")
+        self.config.setdefault("start_fullscreen", True)
         self.max_history_items = 12
         try:
             self.root.geometry(self.config["window_size"])
         except tk.TclError:
             pass
+        if self.config.get("start_fullscreen", False):
+            # Use maximized mode so window controls stay visible.
+            try:
+                self.root.state("zoomed")
+            except tk.TclError:
+                try:
+                    self.root.attributes("-zoomed", True)
+                except tk.TclError:
+                    pass
         
         self.tabs_data = {}
         self.setup_ui()
@@ -406,13 +416,13 @@ class CSharpProMapper:
         pw = tk.PanedWindow(tab, orient=tk.HORIZONTAL, sashrelief=tk.RAISED, bg=self.ret_Theme(currenttheme)["bg"])
         pw.pack(fill=tk.BOTH, expand=True)
 
-        t_f = tk.Frame(pw); tree = ttk.Treeview(t_f, columns=("kind",), show="tree headings")
+        t_f = tk.Frame(pw); tree = ttk.Treeview(t_f, columns=("kind",), show="tree headings", displaycolumns=("kind",))
         tree.heading("#0", text="Scoped Structure")
         tree.heading("kind", text="Type")
         tree.column("#0", width=260, stretch=True)
         tree.column("kind", width=110, anchor="center", stretch=False)
         tree.pack(fill=tk.BOTH, expand=True)
-        pw.add(t_f, width=75)
+        pw.add(t_f, width=300, minsize=240)
         
         g_f = tk.Frame(pw); canvas = tk.Canvas(g_f, bg=self.ret_Theme(currenttheme)["bg"])
         canvas.pack(fill=tk.BOTH, expand=True)
@@ -497,19 +507,19 @@ class CSharpProMapper:
         graph_visible = str(t["g_f"]) in panes
         code_visible = str(t["c_f"]) in panes
         if tree_visible and graph_visible and code_visible and len(panes) >= 3:
-            tree_w = max(140, int(total_w * 0.15))
+            tree_w = max(240, int(total_w * 0.22))
             graph_w = max(220, int((total_w - tree_w) * 0.5))
             pw.sash_place(0, tree_w, 0)
             pw.sash_place(1, tree_w + graph_w, 0)
             return
 
         if tree_visible and graph_visible and not code_visible and len(panes) >= 2:
-            tree_w = max(140, int(total_w * 0.15))
+            tree_w = max(240, int(total_w * 0.22))
             pw.sash_place(0, tree_w, 0)
             return
 
         if tree_visible and code_visible and not graph_visible and len(panes) >= 2:
-            tree_w = max(140, int(total_w * 0.15))
+            tree_w = max(240, int(total_w * 0.22))
             pw.sash_place(0, tree_w, 0)
             return
 
@@ -1111,7 +1121,7 @@ class CSharpProMapper:
         if tid in self.tabs_data:
             t = self.tabs_data[tid]
             for f in [t["t_f"], t["g_f"], t["c_f"]]: t["pw"].forget(f)
-            if self.v_tree.get(): t["pw"].add(t["t_f"], width=200)
+            if self.v_tree.get(): t["pw"].add(t["t_f"], width=300, minsize=240)
             if self.v_graph.get(): t["pw"].add(t["g_f"], stretch="always")
             if self.v_code.get(): t["pw"].add(t["c_f"], width=500)
             self.schedule_tab_proportions(tid)

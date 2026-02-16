@@ -1,0 +1,18 @@
+:root {
+  --bg: #0d1117;
+  --fg: #e6edf3;
+  --card: #161b22;
+  --accent: #58a6ff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1f2937, var(--bg));
+  color: var(--fg);
+}
+.hero { padding: 2rem; border-bottom: 1px solid #30363d; }
+main { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; padding: 1rem; }
+.card { background: var(--card); border: 1px solid #30363d; border-radius: 10px; padding: 1rem; }
+.badge { color: var(--accent); font-weight: 700; }

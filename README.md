@@ -6,7 +6,7 @@
 #
 #                     C# Code Mapper Pro
 
-`C# Code Mapper Pro` is a Tkinter desktop application - written in CSharp and templated and documented with Codex - that opens source files, parses structural entities (class/method/variable/function), and visualizes them in:
+`C# Code Mapper Pro` is a Tkinter desktop application that opens source files, parses structural entities (class/method/variable/function), and visualizes them in:
 
 - a `Treeview` explorer
 - a node-link diagram canvas
@@ -19,8 +19,10 @@
 - Multi-tab source browsing
 - Theme system with selectable palettes (including monochrome lime)
 - Recent file history with persistence in `config.json`
+- Configurable startup maximize mode via `start_fullscreen` (`config.json`) with title bar/window controls visible
 - Diagram zoom (`Ctrl+MouseWheel`, keyboard shortcuts, menu)
 - Tree-to-diagram/code and diagram-to-tree/code synchronization
+- Tree pane defaults sized to keep `Scoped Structure` and `Type` columns visible on new tabs
 - Language detection and multi-language parsing (plus fallback for unknown text)
 - Diagram screenshot export (`.png` with PIL or `.ps` fallback)
 
@@ -157,4 +159,17 @@ All functions below are from `csharp_scan_main.py`.
 
 ## Notes
 - Parser coverage is broad and heuristic-based. It is designed for useful structural navigation, not full compiler-accurate AST parsing for every language.
-- Config persistence includes theme choice, recent files, and window geometry.
+- Config persistence includes theme choice, recent files, window geometry, and startup maximize preference.
+
+## Config Keys
+```json
+{
+  "theme": "dark",
+  "history": [],
+  "auto_parse": false,
+  "show_diff": true,
+  "window_size": "1400x900",
+  "start_fullscreen": true
+}
+```
+`start_fullscreen: true` starts the app maximized (`zoomed`) while keeping minimize/maximize/close buttons visible.
